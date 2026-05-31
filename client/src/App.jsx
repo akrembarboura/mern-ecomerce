@@ -1,18 +1,19 @@
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import About from './pages/About'
+import AuthLayout from "./pages/auth/layout"
+import { Routes, Route } from "react-router-dom"
+import AuthLogin from "./pages/auth/login"
+import AuthRegister from "./pages/auth/register"
 
-
-const App = () => {
+function App() {
   return (
-    <div>
+    <div className="flex flex-col overflow-hidden bg-white">
+      <h1>header component</h1>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-
+        <Route path="/auth" element={<AuthLayout/>}>
+          <Route path="login" element={<AuthLogin/>}/>
+          <Route path="register" element={<AuthRegister/>}/>
+        </Route>
       </Routes>
     </div>
   )
 }
-
 export default App
