@@ -20,7 +20,7 @@ const AuthLayout = () => {
           <h1 className="text-2xl font-medium text-purple-50">Your store, your rules</h1>
           <p className="text-sm text-purple-300 leading-relaxed">
             Manage products, track orders, and grow your business.
-          </p>
+          </p> 
         </div>
 
         {/* Feature list */}
