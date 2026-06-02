@@ -12,13 +12,17 @@ function CheckAuth({ isAuthenticated, user, children }) {
     if (user.role === "admin") {
       return <Navigate to="/admin/dashboard" />;
     } else {
-      return <Navigate to="/shopping/home" />;
+      return <Navigate to="/shop/home" />;
     }
   } 
-  if(isAuthenticated && user?.role !=='admin' && location.pathname === "/admin") {
-    return <Navigate to="/unauthorized-page"/>;
+  if(isAuthenticated && user?.role !=='admin' && location.pathname === ("/admin")) {
+    return <Navigate to="unauth-page"/>;
   }
-  return children;
+  if(isAuthenticated && user?.role =='admin' && location.pathname === ("/shop")) {
+    return <Navigate to="/admin/dashboard"/>;
+  }
+  
+  return  <>{children}</>;
 }
 
 export default CheckAuth;
