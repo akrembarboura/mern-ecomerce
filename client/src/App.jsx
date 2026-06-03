@@ -18,13 +18,13 @@ import ShoppingHome from "./pages/shoping-View/home";
 import ShoppingAccount from "./pages/shoping-View/account";
 import ShoppingListing from "./pages/shoping-View/listing";
 import ShoppingCheckout from "./pages/shoping-View/checkout";
-
+// common folder and not found page
 import CheckAuth from "./components/common/check-auth";
 import NotFound from "./pages/not-found/notFound";
 import UnAuthPage from "./pages/unauth-page/index";
 
 function App() {
-  const isAuthenticated = true;
+  const isAuthenticated = null;
   const user = { name: "akrem", role: "user" };
 
   return (
