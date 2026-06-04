@@ -1,92 +1,147 @@
-#  Welcome to Docker
+# MERN E-Commerce
 
-> A beginner-friendly repository to help new users get started with Docker — fast.
-
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
-![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen?style=for-the-badge)
-
----
+A full-stack e-commerce application built with MongoDB, Express.js, React, and Node.js.
 
 ## Overview
 
-This project provides a simple, hands-on introduction to Docker. Whether you're running your first container or exploring how Docker works under the hood, this is the place to start.
+This project is designed to provide a complete online shopping experience, including authentication, product management, shopping cart functionality, and an administrative dashboard.
 
----
+## Features
 
-##  Quick Start
+### Customer
 
-No build required. Pull and run the pre-built image directly:
+* User registration and authentication
+* Product browsing and search
+* Product filtering
+* Shopping cart
+* Checkout process
+* Order history
+* Profile management
+
+### Admin
+
+* Dashboard overview
+* Product management (Create, Read, Update, Delete)
+* Order management
+* User management
+* Analytics and reporting
+
+## Tech Stack
+
+### Frontend
+
+* React
+* React Router
+* Tailwind CSS
+* Axios
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JSON Web Tokens (JWT)
+* bcrypt
+
+## Project Structure
+
+```text
+mern-ecommerce/
+│
+├── client/
+│   ├── src/
+│   ├── public/
+│   └── package.json
+│
+├── server/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   └── package.json
+│
+└── README.md
+```
+
+## Installation
+
+Clone the repository:
 
 ```bash
-docker run -d -p 8088:80 --name welcome-to-docker docker/welcome-to-docker
+git clone https://github.com/akrembarboura/mern-ecommerce.git
 ```
 
-Then open your browser at:
-
-```
-http://localhost:8088
-```
-
----
-
-##  Build & Run Locally
-
-If you've cloned the repo and want to build the image yourself:
+Install frontend dependencies:
 
 ```bash
-# 1. Build the image
-docker build -t welcome-to-docker .
-
-# 2. Run the container
-docker run -d -p 8088:3000 --name welcome-to-docker welcome-to-docker
+cd client
+npm install
 ```
 
-Then visit:
+Install backend dependencies:
 
-```
-http://localhost:8088
-```
-
----
-
-##  Prerequisites
-
-Make sure you have the following installed before getting started:
-
-- [Docker](https://docs.docker.com/get-docker/) (v20.10 or later recommended)
-- [Git](https://git-scm.com/)
-
----
-
-##  Project Structure
-
-```
-welcome-to-docker/
-├── Dockerfile          # Image build instructions
-├── README.md           # You are here
-├── CONTRIBUTING.md     # How to contribute
-└── ...                 # App source files
+```bash
+cd ../server
+npm install
 ```
 
----
+## Environment Variables
+
+Create a `.env` file in the server directory:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+```
+
+## Running the Application
+
+Backend:
+
+```bash
+npm run server
+```
+
+Frontend:
+
+```bash
+npm run dev
+```
+
+## Screenshots
+
+Add screenshots of:
+
+* Homepage
+* Product Listing Page
+* Product Details Page
+* Shopping Cart
+* Authentication Pages
+* Admin Dashboard
+
+## Roadmap
+
+* Authentication System
+* Product Management
+* Shopping Cart
+* Order Management
+* Stripe Integration
+* Product Reviews
+* Wishlist
+* Email Notifications
 
 ## Contributing
 
-We welcome contributions of all kinds — bug fixes, improvements, or new examples!
+Contributions and suggestions are welcome.
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a pull request.
+## License
 
----
+This project is licensed under the MIT License.
 
-##  License
+## Author
 
-This project is licensed under the [MIT License](LICENSE).
+Akrem Barboura
 
----
-
-## 🔗 Resources
-
-- [Docker Documentation](https://docs.docker.com/)
-- [Docker Hub](https://hub.docker.com/)
-- [Get Docker](https://docs.docker.com/get-docker/)
+LinkedIn: https://www.linkedin.com/in/akrembarboura
