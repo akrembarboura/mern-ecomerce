@@ -34,6 +34,7 @@ This project is designed to provide a complete online shopping experience, inclu
 * React Router
 * Tailwind CSS
 * Axios
+* Redux Toolkiit
 
 ### Backend
 
