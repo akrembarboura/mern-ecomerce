@@ -18,7 +18,7 @@ const AuthLogin = () => {
       {/* Brand */}
       <div className="text-center border-b border-zinc-700 pb-6">
         <h1 className="text-4xl font-black tracking-[0.2em] text-white uppercase">
-          ShopFlow
+          MernShop
         </h1>
       </div>
 

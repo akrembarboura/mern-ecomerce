@@ -1,5 +1,5 @@
 require("dotenv").config();
-
+const authRouter = require("./routes/auth/auth-routes")
 const dns = require('dns');
 try {
   dns.setServers(['8.8.8.8', '1.1.1.1']);
@@ -34,6 +34,8 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
+app.use('/api/auth',authRouter);
+
 
 // MongoDB connection
 if (!process.env.MONGO_URI) {

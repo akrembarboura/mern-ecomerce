@@ -1,16 +1,20 @@
 import { useState } from "react";
 import CommonForm from "@/components/common/format";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerFrmControls } from "@/config";
+import { useDispatch } from "react-redux";
+import { registerUser } from "@/store/authSlice";
 
 const AuthRegister = () => {
   const initialState = { userName: "", email: "", password: "" };
   const [formData, setFormData] = useState(initialState);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   function onSubmit(e) {
     e.preventDefault();
-    console.log(formData);
-  }
+    dispatch(registerUser(formData)).then(()=>navigate('/auth/login'))
+   
+  } console.log(formData);
 
   return (
     <div className="w-full max-w-sm mx-auto px-6 py-10 space-y-8">
@@ -18,7 +22,7 @@ const AuthRegister = () => {
       {/* Brand */}
       <div className="text-center border-b border-zinc-700 pb-6">
         <h1 className="text-4xl font-black tracking-[0.2em] text-white uppercase">
-          ShopFlow
+          MernShop
         </h1>
       </div>
 
