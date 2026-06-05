@@ -113,15 +113,6 @@ npm run dev
 
 ## Screenshots
 
-Add screenshots of:
-
-* Homepage
-* Product Listing Page
-* Product Details Page
-* Shopping Cart
-* Authentication Pages
-* Admin Dashboard
-
 ## Roadmap
 
 * Authentication System

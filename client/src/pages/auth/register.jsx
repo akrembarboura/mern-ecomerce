@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CommonForm from "@/components/common/format";
+import  CommonForm from "@/components/common/format";
 import { Link, useNavigate } from "react-router-dom";
 import { registerFrmControls } from "@/config";
 import { useDispatch } from "react-redux";
@@ -11,10 +11,13 @@ const AuthRegister = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   function onSubmit(e) {
-    e.preventDefault();
-    dispatch(registerUser(formData)).then(()=>navigate('/auth/login'))
-   
-  } console.log(formData);
+  e.preventDefault();
+  console.log(formData);
+  dispatch(registerUser(formData)).then((data) => {
+    console.log(data)
+  });
+} 
+  
 
   return (
     <div className="w-full max-w-sm mx-auto px-6 py-10 space-y-8">

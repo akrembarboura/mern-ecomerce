@@ -1,28 +1,34 @@
 import { useState } from "react";
 import CommonForm from "@/components/common/format";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginFrmControls } from "@/config";
+import { useDispatch } from "react-redux";
+import { loginUser } from "@/store/authSlice";
 
 const AuthLogin = () => {
   const initialState = { email: "", password: "" };
   const [formData, setFormData] = useState(initialState);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log(formData);
+    dispatch(loginUser(formData)).then((data) => {
+      if (data?.payload?.success) {
+        navigate("/shop/home");
+      }
+    });
   }
 
   return (
     <div className="w-full max-w-sm mx-auto px-6 py-10 space-y-8">
 
-      {/* Brand */}
       <div className="text-center border-b border-zinc-700 pb-6">
         <h1 className="text-4xl font-black tracking-[0.2em] text-white uppercase">
           MernShop
         </h1>
       </div>
 
-      {/* Header */}
       <div className="space-y-1">
         <h2 className="text-2xl font-semibold text-white">Welcome back</h2>
         <p className="text-sm text-zinc-400">
@@ -30,7 +36,6 @@ const AuthLogin = () => {
         </p>
       </div>
 
-      {/* Form */}
       <div className="space-y-5
         [&_label]:text-[11px] [&_label]:font-bold [&_label]:tracking-widest
         [&_label]:uppercase [&_label]:text-zinc-400
@@ -53,7 +58,6 @@ const AuthLogin = () => {
         />
       </div>
 
-      {/* Forgot password */}
       <div className="text-right -mt-4">
         <Link
           to="/auth/forgot-password"
@@ -63,14 +67,12 @@ const AuthLogin = () => {
         </Link>
       </div>
 
-      {/* Divider */}
       <div className="flex items-center gap-4">
         <div className="flex-1 h-px bg-zinc-700" />
         <span className="text-xs text-zinc-600 uppercase tracking-widest">or</span>
         <div className="flex-1 h-px bg-zinc-700" />
       </div>
 
-      {/* Google Button */}
       <button className="w-full flex items-center justify-center gap-3 border border-zinc-700 py-3.5 text-[12px] font-bold tracking-widest uppercase text-white hover:border-white transition-colors">
         <svg className="w-4 h-4" viewBox="0 0 24 24">
           <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -81,9 +83,8 @@ const AuthLogin = () => {
         Continue with Google
       </button>
 
-      {/* Register */}
       <div className="text-center space-y-1 pt-2 border-t border-zinc-700">
-        <p className="text-sm text-zinc-500">New to ShopFlow?</p>
+        <p className="text-sm text-zinc-500">New to MernShop?</p>
         <Link
           to="/auth/register"
           className="text-[12px] font-bold tracking-widest uppercase text-white border-b border-white pb-0.5 hover:text-zinc-300 hover:border-zinc-300 transition-colors"

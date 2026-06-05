@@ -1,71 +1,28 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const user = require("../models/User");
+const User = require("../models/User");
 
+// -- Register --
+const registerUser = async (req, res) => {
+  const { userName, email, password } = req.body;
+  try {
+    
 
+    const hashed = await bcrypt.hash(password, 12);
+    const user = new User({ userName, email, password: hashed });
+    await user.save();
 
+    console.log("User saved:", user);
 
-//register 
-const registerUser = async(req,res) =>{
-    const {userName, email, password} = req.body;
-    try{
-        const hashPassword = await bcrypt.hash(password ,12)
-        const newUser = new user({
-            userName,
-            email,
-            password: hashPassword,
+    res.status(201).json({ success: true, message: "User registered successfully" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
 
-        });
-        await newUser.save();
-        res.status(200).json({
-            
-            success : true,
-            message :'register succseful'
+// -- Login -- 
+const loginUser = async (req, res) => {
+  res.status(200).json({ success: true, message: "Login coming soon" });
+}; 
 
-        })
-
-
-
-
-
-    }catch{
-        console.log(e);
-        req.status(500).json({
-            success : false,
-            message :'some error occured'
-        })
-        
-    }
-}
-
-
-
-
-
-//login
-const loginUser = async(req, res) =>{
-    const {email,password} = req.body;
-    try{
-
-    }catch{
-        console.log(e);
-        req.status(500).json({
-            success : false,
-            message :'some error occured'
-        })
-        
-    }
-}
-
-
-
-
-
-//logout
-
-
-
-//ayth middleware
-
-
-module.exports = { registerUser}
+module.exports = { registerUser};

@@ -17,29 +17,23 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "Cache-Control",
-      "Expires",
-      "Pragma",
-    ],
-    credentials: true,
-  })
-);
-
+// -- Middleware --
+app.use(cors({
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization", "Cache-Control", "Expires", "Pragma"],
+  credentials: true,
+}));
 app.use(cookieParser());
 app.use(express.json());
-app.use('/api/auth',authRouter);
 
+// -- Routes --
+app.use("/api/auth", authRouter);
+app.get("/", (req, res) => res.send("Backend is running"));
 
-// MongoDB connection
+// -- MongoDB --
 if (!process.env.MONGO_URI) {
-  console.error("Error: MONGO_URI environment variable is not set");
+  console.error("Error: MONGO_URI is not set");
   process.exit(1);
 }
 
@@ -49,15 +43,10 @@ mongoose
     socketTimeoutMS: 45000,
   })
   .then(() => {
-    console.log("✓ Connected to MongoDB successfully");
-    app.listen(PORT, () => {
-      console.log(`✓ Server is running on port ${PORT}`);
-    });
-    app.get("/", (req, res) => {
-     res.send("Backend is running");
-});
+    console.log("Connected to MongoDB successfully");
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   })
-  .catch((error) => {
-    console.error("✗ Error connecting to MongoDB:", error.message);
+  .catch((err) => {
+    console.error("MongoDB connection error:", err.message);
     process.exit(1);
   });

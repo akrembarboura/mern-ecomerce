@@ -1,15 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios"; 
+import axios from "axios";
 
 const initialState = {
-  isAuthenticated: false, 
+  isAuthenticated: false,
   user: null,
   isLoading: false,
 };
 
 export const registerUser = createAsyncThunk(
   "auth/register",
-  async (formData, { rejectWithValue }) => { 
+  async (formData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         "http://localhost:5000/api/auth/register",
@@ -18,7 +18,24 @@ export const registerUser = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data); 
+       
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const loginUser = createAsyncThunk(
+  "auth/login",
+  async (formData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        formData,
+        { withCredentials: true }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -28,25 +45,26 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload; 
+      state.user = action.payload;
       state.isAuthenticated = !!action.payload;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: (builder) => {   
     builder
       .addCase(registerUser.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(registerUser.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.user = null;
-        state.isAuthenticated = false ; 
-      })
-      .addCase(registerUser.rejected, (state) => { 
+      .addCase(registerUser.fulfilled, (state) => {
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;
-      });
+      })
+      .addCase(registerUser.rejected, (state) => {
+        state.isLoading = false;
+        state.user = null;
+        state.isAuthenticated = false;
+      })
+      
   },
 });
 
